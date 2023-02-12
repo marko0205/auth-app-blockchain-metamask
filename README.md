@@ -1,70 +1,79 @@
-# Getting Started with Create React App
+# Dapp - Metamask authentication 
+#### University project for Data Security course
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Project Description
 
-## Available Scripts
+Design and develop a decentralized application which allow the user to register and login an account, allowing him to authenticate with a single click, without having to remember and enter the classic login credentials. This app implements features such as Sing-in with Google, Facebook, Apple... but in a completely decentralized context. It use the metamask extension to interact whith the etherium blockchain. 
 
-In the project directory, you can run:
+ A short video demonstrating the workflow:
 
-### `npm start`
+<img src="assets/demo.gif" width="300" height="300" alt="demo">
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Rquirement
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+First of all you need to install nodejs (developed and tested with v16):
 
-### `npm test`
+```
+$ sudo apt install nodejs
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Then you can install the Etherium simulator Ganache:
 
-### `npm run build`
+```
+$ npm install ganache --global
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Finally install Truffle suite which is a development environment for Smart Contracts:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```
+$ npm install -g truffle
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Usage
 
-### `npm run eject`
+Don't forget to run ganache in backgroud on the port 7545, from the UI or with the command: 
+```
+$ ganache-cli -p 7545
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Now you can download the project repository with git, go into the root project folder and install the dependencies with the command:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```
+$ npm install 
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Once finisched go into the /scr folder, compile and upload the Smart Contracts on Ganache:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```
+$ truffle migrate
+```
 
-## Learn More
+Then you can also test the SmartContract function with the command:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```
+$ truffle test
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Now you can start the nodejs App and interact with it avaiable at localhost on the port 3000
+```
+$ npm run start
+```
 
-### Code Splitting
+## Smart Contract description
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+The Solidty contaract Auth contains the following methods:
 
-### Analyzing the Bundle Size
+- **createUser**: allows users to create an account
+- **fetchNonce**: recover the nonce associated to an user for the login purpose 
+- **getUserAndUpdateNonce**: get the data of an user
+- **generateRandomSequence**: generate a new nonce value for an user after the login
+- **deleteUser**: allow an user to delete his account
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
 
-### Making a Progressive Web App
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## License
 
-### Advanced Configuration
+MIT
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+**Free Software, Hell Yeah!**
 
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

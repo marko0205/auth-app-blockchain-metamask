@@ -25,14 +25,13 @@ contract Auth  {
 		return usersList[_address].username;
 	}
 
-
 	// ideally should be used a RNG contract or an oracle to generate truly random values
 	function generateRandomSequence() public view returns (bytes32) {
-		return keccak256(abi.encodePacked(block.timestamp, blockhash(block.number - 1)));
+		return keccak256(abi.encodePacked(block.timestamp, blockhash(block.number - 1), block.difficulty));
 	}
 
+
 	function createUser(string memory _username, address _address, string memory _nonce) public {	
-		//userCount++;
 		require(usersList[_address].addr != _address, "already registered");
 		usersList[_address] = user(_username, _address, keccak256(abi.encodePacked(_nonce)));
 	//	emit userCreated(_username, _address, keccak256(abi.encodePacked(_nonce)));
